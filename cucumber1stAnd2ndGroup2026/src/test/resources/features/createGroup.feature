@@ -15,6 +15,6 @@ Feature: Create Group and validate on Sign-Up
     And I enter group description This is an automated test group
     And I select group year 2026
     And I enter max capacity 30
-    And I enter start date 01012026
-    And I enter end date 12312026
+    And I enter start date 2026-01-01
+    And I enter end date 2026-12-31
     And I click submit create group

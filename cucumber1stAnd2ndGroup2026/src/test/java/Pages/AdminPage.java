@@ -1,5 +1,6 @@
 package Pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -110,15 +111,13 @@ public class AdminPage {
 
     public void enterStartDate(String startDate) {
         getWait().until(visibilityOf(groupStartDate_xpath));
-        groupStartDate_xpath.sendKeys(Keys.CONTROL + "a");
-        groupStartDate_xpath.sendKeys(startDate);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].value = arguments[1]", groupStartDate_xpath, startDate);
         pause();
     }
 
     public void enterEndDate(String endDate) {
         getWait().until(visibilityOf(groupEndDate_xpath));
-        groupEndDate_xpath.sendKeys(Keys.CONTROL + "a");
-        groupEndDate_xpath.sendKeys(endDate);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].value = arguments[1]", groupEndDate_xpath, endDate);
         pause();
     }
 

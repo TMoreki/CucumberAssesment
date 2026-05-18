@@ -1,10 +1,10 @@
 package Steps;
 
 import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
 
 public class stepsDef extends Base{
-
 
     @Given("i am on the login page")
     public void i_am_on_the_login_page() {
@@ -94,5 +94,6 @@ public class stepsDef extends Base{
 
     @After
     public void closeBrowser() {
+        driver.quit();
     }
 }
