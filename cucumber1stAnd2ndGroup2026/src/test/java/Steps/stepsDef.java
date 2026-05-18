@@ -57,6 +57,41 @@ public class stepsDef extends Base{
         adminPage.clickCreateGroup();
     }
 
+    @And("I enter group name (.*)$")
+    public void i_enter_group_name(String name) {
+        adminPage.enterGroupName(name);
+    }
+
+    @And("I enter group description (.*)$")
+    public void i_enter_group_description(String description) {
+        adminPage.enterGroupDescription(description);
+    }
+
+    @And("I select group year (.*)$")
+    public void i_select_group_year(String year) {
+        adminPage.selectGroupYear(year);
+    }
+
+    @And("I enter max capacity (.*)$")
+    public void i_enter_max_capacity(String capacity) {
+        adminPage.enterMaxCapacity(capacity);
+    }
+
+    @And("I enter start date (.*)$")
+    public void i_enter_start_date(String startDate) {
+        adminPage.enterStartDate(startDate);
+    }
+
+    @And("I enter end date (.*)$")
+    public void i_enter_end_date(String endDate) {
+        adminPage.enterEndDate(endDate);
+    }
+
+    @And("I click submit create group")
+    public void i_click_submit_create_group() {
+        adminPage.clickSubmitCreateGroup();
+    }
+
     @After
     public void closeBrowser() {
     }

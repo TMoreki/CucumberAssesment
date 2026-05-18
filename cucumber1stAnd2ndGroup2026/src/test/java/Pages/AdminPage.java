@@ -1,5 +1,6 @@
 package Pages;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
+import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 
 public class AdminPage {
     WebDriver driver;
@@ -24,27 +26,105 @@ public class AdminPage {
     @FindBy(xpath = "//*[@id='app-root']/div/div[3]/div/div[2]/button")
     WebElement createGroupButton_xpath;
 
+    @FindBy(xpath = "//*[@id='app-root']/div/div[3]/div/div[4]/div/form/div[1]/input")
+    WebElement groupName_xpath;
+
+    @FindBy(xpath = "//textarea[@name='description' and @placeholder='Group description...']")
+    WebElement groupDescription_xpath;
+
+    @FindBy(xpath = "//input[@type='number' and @name='year']")
+    WebElement groupYear_xpath;
+
+    @FindBy(xpath = "//form/div[3]/div[2]//input")
+    WebElement groupMaxCapacity_xpath;
+
+    @FindBy(xpath = "//input[@name='startDate']")
+    WebElement groupStartDate_xpath;
+
+    @FindBy(xpath = "//input[@name='endDate']")
+    WebElement groupEndDate_xpath;
+
+    @FindBy(xpath = "//button[@type='submit' and text()='Create Group']")
+    WebElement submitCreateGroup_xpath;
+
     public AdminPage(WebDriver driver) {
         this.driver = driver;
     }
 
+    private WebDriverWait getWait() {
+        return new WebDriverWait(driver, Duration.ofSeconds(15));
+    }
+
+    private void pause() {
+        try { Thread.sleep(800); } catch (InterruptedException ignored) {}
+    }
+
     public void clickUserMenu() {
-        new WebDriverWait(driver, Duration.ofSeconds(15)).until(visibilityOf(userMenuButton_xpath));
+        getWait().until(elementToBeClickable(userMenuButton_xpath));
         userMenuButton_xpath.click();
+        pause();
     }
 
     public void clickAdminPanel() {
-        new WebDriverWait(driver, Duration.ofSeconds(15)).until(visibilityOf(adminPanelOption_xpath));
+        getWait().until(elementToBeClickable(adminPanelOption_xpath));
         adminPanelOption_xpath.click();
+        pause();
     }
 
     public void clickGroups() {
-        new WebDriverWait(driver, Duration.ofSeconds(15)).until(visibilityOf(groupsNavButton_xpath));
+        getWait().until(elementToBeClickable(groupsNavButton_xpath));
         groupsNavButton_xpath.click();
+        pause();
     }
 
     public void clickCreateGroup() {
-        new WebDriverWait(driver, Duration.ofSeconds(15)).until(visibilityOf(createGroupButton_xpath));
+        getWait().until(elementToBeClickable(createGroupButton_xpath));
         createGroupButton_xpath.click();
+        pause();
+    }
+
+    public void enterGroupName(String name) {
+        getWait().until(visibilityOf(groupName_xpath));
+        groupName_xpath.sendKeys(name);
+        pause();
+    }
+
+    public void enterGroupDescription(String description) {
+        getWait().until(visibilityOf(groupDescription_xpath));
+        groupDescription_xpath.sendKeys(description);
+        pause();
+    }
+
+    public void selectGroupYear(String year) {
+        getWait().until(visibilityOf(groupYear_xpath));
+        groupYear_xpath.clear();
+        groupYear_xpath.sendKeys(year);
+        pause();
+    }
+
+    public void enterMaxCapacity(String capacity) {
+        getWait().until(visibilityOf(groupMaxCapacity_xpath));
+        groupMaxCapacity_xpath.sendKeys(capacity);
+        pause();
+    }
+
+    public void enterStartDate(String startDate) {
+        getWait().until(visibilityOf(groupStartDate_xpath));
+        groupStartDate_xpath.sendKeys(Keys.CONTROL + "a");
+        groupStartDate_xpath.sendKeys(startDate);
+        pause();
+    }
+
+    public void enterEndDate(String endDate) {
+        getWait().until(visibilityOf(groupEndDate_xpath));
+        groupEndDate_xpath.sendKeys(Keys.CONTROL + "a");
+        groupEndDate_xpath.sendKeys(endDate);
+        pause();
+    }
+
+    public void clickSubmitCreateGroup() {
+        getWait().until(elementToBeClickable(submitCreateGroup_xpath));
+        submitCreateGroup_xpath.click();
+        pause();
     }
 }

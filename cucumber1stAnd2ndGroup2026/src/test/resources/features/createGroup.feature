@@ -11,3 +11,10 @@ Feature: Create Group and validate on Sign-Up
     And I click on admin panel
     And I click on groups
     And I click on create group button
+    And I enter group name Automation Group
+    And I enter group description This is an automated test group
+    And I select group year 2026
+    And I enter max capacity 30
+    And I enter start date 01012026
+    And I enter end date 12312026
+    And I click submit create group
