@@ -12,7 +12,7 @@ Feature: Create Group and validate on Sign-Up
     And I click on groups
     And I click on create group button
     And I enter group name Automation Group
-    And I enter group description This is an automated test group
+    And I enter group description This is for Ndosi BDD Assessment 2026
     And I select group year 2026
     And I enter max capacity 30
     And I enter start date 2026-01-01

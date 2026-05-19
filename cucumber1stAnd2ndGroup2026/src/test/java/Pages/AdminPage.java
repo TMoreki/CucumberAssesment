@@ -57,7 +57,7 @@ public class AdminPage {
     }
 
     private void pause() {
-        try { Thread.sleep(800); } catch (InterruptedException ignored) {}
+        try { Thread.sleep(2000); } catch (InterruptedException ignored) {}
     }
 
     public void clickUserMenu() {
@@ -111,13 +111,21 @@ public class AdminPage {
 
     public void enterStartDate(String startDate) {
         getWait().until(visibilityOf(groupStartDate_xpath));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].value = arguments[1]", groupStartDate_xpath, startDate);
+        ((JavascriptExecutor) driver).executeScript(
+            "var nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;" +
+            "nativeInputValueSetter.call(arguments[0], arguments[1]);" +
+            "arguments[0].dispatchEvent(new Event('input', { bubbles: true }));",
+            groupStartDate_xpath, startDate);
         pause();
     }
 
     public void enterEndDate(String endDate) {
         getWait().until(visibilityOf(groupEndDate_xpath));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].value = arguments[1]", groupEndDate_xpath, endDate);
+        ((JavascriptExecutor) driver).executeScript(
+            "var nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;" +
+            "nativeInputValueSetter.call(arguments[0], arguments[1]);" +
+            "arguments[0].dispatchEvent(new Event('input', { bubbles: true }));",
+            groupEndDate_xpath, endDate);
         pause();
     }
 
