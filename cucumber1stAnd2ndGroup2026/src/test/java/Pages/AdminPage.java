@@ -86,7 +86,7 @@ public class AdminPage {
 
     public void enterGroupName(String name) {
         getWait().until(visibilityOf(groupName_xpath));
-        groupName_xpath.sendKeys(name);
+        groupName_xpath.sendKeys(name + System.currentTimeMillis());
         pause();
     }
 
