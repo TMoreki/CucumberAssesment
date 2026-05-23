@@ -18,3 +18,12 @@ Feature: Create Group and validate on Sign-Up
     And I enter start date 2026-01-01
     And I enter end date 2026-12-31
     And I click submit create group
+    And I click back to website
+    And I logout
+    And I navigate to sign up page
+    And I enter first name Lesego
+    And I enter last name Moreki
+    And I enter registration email newuser@gmail.com
+    And I enter registration password @12345678
+    And I enter confirm password @12345678
+    Then the created group should exist in the group dropdown

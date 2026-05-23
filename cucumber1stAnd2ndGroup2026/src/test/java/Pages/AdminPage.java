@@ -1,5 +1,6 @@
 package Pages;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -45,6 +46,12 @@ public class AdminPage {
     @FindBy(xpath = "//input[@name='endDate']")
     WebElement groupEndDate_xpath;
 
+    @FindBy(xpath = "//button[contains(text(),'Back to Website')]")
+    WebElement backToWebsite_xpath;
+
+    @FindBy(xpath = "//button[.//span[text()='Logout']]")
+    WebElement logout_xpath;
+
     @FindBy(xpath = "//button[@type='submit' and text()='Create Group']")
     WebElement submitCreateGroup_xpath;
 
@@ -86,9 +93,16 @@ public class AdminPage {
 
     public void enterGroupName(String name) {
         getWait().until(visibilityOf(groupName_xpath));
-        groupName_xpath.sendKeys(name + System.currentTimeMillis());
+        createdGroupName = name + System.currentTimeMillis();
+        groupName_xpath.sendKeys(createdGroupName);
         pause();
     }
+
+    public String getCreatedGroupName() {
+        return createdGroupName;
+    }
+
+    private String createdGroupName;
 
     public void enterGroupDescription(String description) {
         getWait().until(visibilityOf(groupDescription_xpath));
@@ -132,6 +146,24 @@ public class AdminPage {
     public void clickSubmitCreateGroup() {
         getWait().until(elementToBeClickable(submitCreateGroup_xpath));
         submitCreateGroup_xpath.click();
+        pause();
+    }
+
+    public void clickBackToWebsite() {
+        getWait().until(elementToBeClickable(backToWebsite_xpath));
+        backToWebsite_xpath.click();
+        pause();
+    }
+
+    public void clickLogout() {
+        getWait().until(elementToBeClickable(userMenuButton_xpath));
+        userMenuButton_xpath.click();
+        pause();
+        getWait().until(elementToBeClickable(logout_xpath));
+        logout_xpath.click();
+        pause();
+        Alert alert = getWait().until(org.openqa.selenium.support.ui.ExpectedConditions.alertIsPresent());
+        alert.accept();
         pause();
     }
 }

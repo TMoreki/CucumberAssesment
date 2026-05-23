@@ -1,8 +1,8 @@
 package Steps;
 
 import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
+import org.testng.Assert;
 
 public class stepsDef extends Base{
 
@@ -90,6 +90,53 @@ public class stepsDef extends Base{
     @And("I click submit create group")
     public void i_click_submit_create_group() {
         adminPage.clickSubmitCreateGroup();
+    }
+
+    @And("I click back to website")
+    public void i_click_back_to_website() {
+        adminPage.clickBackToWebsite();
+    }
+
+    @And("I logout")
+    public void i_logout() {
+        adminPage.clickLogout();
+    }
+
+    @And("I navigate to sign up page")
+    public void i_navigate_to_sign_up_page() {
+        signUpPage.clickLoginNav();
+        signUpPage.clickSignUpHere();
+    }
+
+    @And("I enter first name (.*)$")
+    public void i_enter_first_name(String firstName) {
+        signUpPage.enterFirstName(firstName);
+    }
+
+    @And("I enter last name (.*)$")
+    public void i_enter_last_name(String lastName) {
+        signUpPage.enterLastName(lastName);
+    }
+
+    @And("I enter registration email (.*)$")
+    public void i_enter_registration_email(String email) {
+        signUpPage.enterEmail(email);
+    }
+
+    @And("I enter registration password (.*)$")
+    public void i_enter_registration_password(String password) {
+        signUpPage.enterPassword(password);
+    }
+
+    @And("I enter confirm password (.*)$")
+    public void i_enter_confirm_password(String confirmPassword) {
+        signUpPage.enterConfirmPassword(confirmPassword);
+    }
+
+    @Then("the created group should exist in the group dropdown")
+    public void the_created_group_should_exist_in_the_group_dropdown() {
+        Assert.assertTrue(signUpPage.isGroupPresentInDropdown(adminPage.getCreatedGroupName()),
+                "Group '" + adminPage.getCreatedGroupName() + "' was not found in the sign-up dropdown");
     }
 
     @After
